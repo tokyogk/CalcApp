@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this, SecondActivity.class);
         intent.putExtra("editText1", num1);
         intent.putExtra("editText2", num2);
+        intent.putExtra("textView", num3);
         startActivity(intent);
 
         if (v != null) {
