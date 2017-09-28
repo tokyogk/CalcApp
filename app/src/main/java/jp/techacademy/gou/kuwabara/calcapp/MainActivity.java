@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -35,10 +36,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             num1 = Double.parseDouble(text1);
             num2 = Double.parseDouble(text2);
         } catch (NumberFormatException e) {
-            // 変換に失敗した場合に、メッセージを出すなど
+            Toast.makeText(this, "数字未入力",Toast.LENGTH_LONG).show();
+            return;
         }
 
-        if (v != null) {
+
+
             switch (v.getId()) {
                 case R.id.button1:
                     num3 = num1 + num2;
@@ -56,10 +59,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     break;
 
                 case R.id.button4:
-                    num3 = num1 / num2;
+                    if(num2 == 0) {
+                        Toast.makeText(this, "計算不可。０で割り算できません。",Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    else{
+                        num3 = num1 / num2;
+                    }
                     // クリック処理
                     break;
-            }
+
         }
 
         Intent intent = new Intent(this, SecondActivity.class);
